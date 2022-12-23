@@ -1,6 +1,6 @@
 import prisma from '../services/prisma'
 import { Request, Response } from 'express';
-import Repository from '../repository/repository';
+import Repository from '../repositories/repositories';
 
 const userRepo = new Repository('user');
 

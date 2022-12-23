@@ -15,6 +15,16 @@ export const userController = {
         })
         return res.json({ uniqueUser: uniqueUser });
     },
+
+
+
+
+
+
+
+
+
+
     async createUser(req: Request, res: Response) {
         const userData = req.body;
         const user = await prisma.user.create({
