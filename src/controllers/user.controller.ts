@@ -6,6 +6,15 @@ export const userController = {
         const user = await prisma.user.findMany();
         return res.json(user);
     },
+    async findUniqueUser(req: Request, res: Response) {
+        const paramsId = req.params.id;
+        const uniqueUser = await prisma.user.findUnique({
+            where: {
+                userId: paramsId
+            }
+        })
+        return res.json({ uniqueUser: uniqueUser });
+    },
     async createUser(req: Request, res: Response) {
         const userData = req.body;
         const user = await prisma.user.create({
@@ -16,15 +25,6 @@ export const userController = {
             }
         });
         return res.json({ user: user });
-    },
-    async findUniqueUser(req: Request, res: Response) {
-        const paramsId = req.params.id;
-        const uniqueUser = await prisma.user.findUnique({
-            where: {
-                userId: paramsId
-            }
-        })
-        return res.json({ uniqueUser: uniqueUser });
     },
     async updateUser(req: Request, res: Response) {
         const paramId = req.params.id;
