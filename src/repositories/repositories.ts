@@ -4,7 +4,7 @@ class Repository<T> {
     private prisma: PrismaClient
     private model: any
 
-    constructor(modelName: string) {
+    constructor(modelName: 'user' | 'person') {
         this.prisma = new PrismaClient()
         this.model = this.prisma[modelName]
     }
