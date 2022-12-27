@@ -1,27 +1,28 @@
 import { PrismaClient } from '@prisma/client'
+import { Model } from '@prisma/client/index'
 
 class Repository<T> {
     private prisma: PrismaClient
-    private model: any
+    private model: Model<T>
 
     constructor(modelName: string) {
         this.prisma = new PrismaClient()
-        this.model = this.prisma[modelName]
+        this.model = this.prisma[modelName] as Model<T>
     }
 
-    async findAll(): Promise<T | null> {
+    async findAll(): Promise<T[] | null> {
         return this.model.findMany()
     }
 
     async findById(id: number): Promise<T | null> {
         return this.model.findOne({
             where: {
-                userId: id
+                id: id
             }
         })
     }
 
-    async findBy(field: string, value: any): Promise<T | null> {
+    async findBy(field: keyof T, value: any): Promise<T | null> {
         return this.model.findOne({
             where: {
                 [field]: value
@@ -29,13 +30,13 @@ class Repository<T> {
         })
     }
 
-    async create(data: any): Promise<T> {
+    async create(data: T): Promise<T> {
         return this.model.create({
             data: data
         })
     }
 
-    async update(id: number, data: any): Promise<T | null> {
+    async update(id: number, data: T): Promise<T | null> {
         return this.model.update({
             where: {
                 id: id
