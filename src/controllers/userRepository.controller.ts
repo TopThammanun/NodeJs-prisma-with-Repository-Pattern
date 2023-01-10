@@ -1,4 +1,3 @@
-import prisma from '../services/prisma'
 import { Request, Response } from 'express';
 import Repository from '../repositories/repositories';
 
@@ -19,9 +18,7 @@ export const userRepositoryController = {
         const user = await userRepo.create({
             userName: userData.userName,
             password: userData.password,
-            citizenId: userData.citizenId,
         });
         return res.json({ user: user });
     },
-
 }

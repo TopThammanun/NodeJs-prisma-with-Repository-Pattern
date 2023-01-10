@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import express, { Express, Response, NextFunction, Request } from "express";
-import { userRoutes, staffRoutes, userRePo } from './routes';
+import { authRoutes } from './routes';
 import { rateLimit } from 'express-rate-limit';
 import cors from "cors";
 dotenv.config()
@@ -21,9 +21,9 @@ const App = async () => {
         res.status(200).send('OK')
     })
 
-    app.use('/api/users', userRoutes);
-    app.use('/api/staff', staffRoutes);
-    app.use('/api/usersRepo', userRePo);
+    // app.use('/api/users', userRoutes);
+    // app.use('/api/usersRepo', userRePo);
+    app.use('/api/auth', authRoutes);
 
 }
 
