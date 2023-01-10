@@ -1,9 +1,7 @@
-import userRoutes from './user.routes';
-import userRePo from './userRepo.routes'
-import staffRoutes from './staff.routes';
+// import userRoutes from './user.routes';
+// import userRePo from './userRepo.routes'
+import authRoutes from './auth.routes';
 
 export {
-    userRePo,
-    staffRoutes,
-    userRoutes
+    authRoutes
 };
